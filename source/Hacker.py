@@ -7,7 +7,7 @@ class Hacker(object):
         self.bestMatchKey = None
         self.bestDecode = ""
         self.words = []
-        file = open(r".\words", "r")
+        file = open(r"words", "r")
         for line in file:
             self.words.append(line[:len(line)-1])
         file.close()
@@ -94,12 +94,12 @@ class HackUnbreakable(Hacker):
         super().__init__()
         self.cipher = Cipher.Unbreakable()
         self.counterList = [None]*95
-        self.alp = r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"""
+        self.alp = r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~"""
 
     def _increment(self):
         #Traverse the list backwards
         for i in range(len(self.counterList)-1, -1, -1):
-            if(self.counterList[i] == 94):
+            if(self.counterList[i] == len(self.alp)-1):
                 self.counterList[i] = 0
             elif(self.counterList[i] == None):
                 self.counterList[i] = 0
